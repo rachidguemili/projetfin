@@ -1,18 +1,17 @@
-package com.projetfin.projetfin.courses;
+package com.projetfin.projetfin.classes;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.projetfin.projetfin.chapters.Chapter;
-import com.projetfin.projetfin.student.Student;
-import com.projetfin.projetfin.teacher.Teacher;
+import com.projetfin.projetfin.levels.Level;
+import com.projetfin.projetfin.meets.Meet;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Course {
-
+public class Classe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,32 +19,40 @@ public class Course {
 
 	String name;
 
-	@OneToMany (mappedBy = "course")
-	@JsonIdentityInfo(
-			scope = Course.class,
-			generator = ObjectIdGenerators.PropertyGenerator.class,
-			property = "id")
-	@JsonIdentityReference(alwaysAsId = true)
-	List<Chapter> chapters;
 
-	@ManyToMany(mappedBy = "courseList")
+	@ManyToOne
 	@JsonIdentityInfo(
-			scope = Course.class,
+			scope = Classe.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,
 			property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
-	List<Student> studentList;
+	Level level;
 
 	@ManyToMany
 	@JsonIdentityInfo(
-			scope = Course.class,
+			scope = Classe.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,
 			property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
-	List<Teacher> teacherList;
+	List<Meet> meetList;
 
+	public Classe() {
+	}
 
-	public Course() {
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
+	}
+
+	public List<Meet> getMeetList() {
+		return meetList;
+	}
+
+	public void setMeetList(List<Meet> meetList) {
+		this.meetList = meetList;
 	}
 
 	public Long getId() {
@@ -62,13 +69,5 @@ public class Course {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Chapter> getChapters() {
-		return chapters;
-	}
-
-	public void setChapters(List<Chapter> chapters) {
-		this.chapters = chapters;
 	}
 }

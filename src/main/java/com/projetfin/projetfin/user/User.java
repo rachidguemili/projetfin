@@ -1,11 +1,15 @@
 package com.projetfin.projetfin.user;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.projetfin.projetfin.courses.Course;
+import com.projetfin.projetfin.student.Student;
+
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,13 +18,24 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
+	@ManyToMany
+	@JsonIdentityInfo(
+			scope = User.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	List<Course> courseList;
+
 	String firstName;
 	String lastName;
+	String email;
 	Date birthday;
 	Long streetNumber;
 	String streetName;
 	String cityName;
 	String cityCode;
+	String phoneNumber;
+	String password;
 	String socialSecurityNumber;
 	String role; // "admin" || "student" || "teacher";
 
@@ -45,6 +60,30 @@ public class User {
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setFirstName(String firstName) {

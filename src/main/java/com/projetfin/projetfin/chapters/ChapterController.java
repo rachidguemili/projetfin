@@ -36,7 +36,7 @@ public class ChapterController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public void deleteProject(@PathVariable Long id){
+	public void deleteChapter(@PathVariable Long id){
 		chapterService.deleteChapter(id);
 	}
 

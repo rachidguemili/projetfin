@@ -30,13 +30,13 @@ public class StudentController {
 	}
 
 	@PostMapping
-	public Student postChapter(@RequestBody Student student){
+	public Student postStudent(@RequestBody Student student){
 
 		return studentService.saveStudent(student);
 	}
 
 	@PutMapping(value = "/{id}")
-	public Student putChapter(@RequestBody Student student, @PathVariable Long id){
+	public Student putStudent(@RequestBody Student student, @PathVariable Long id){
 		return studentService.updateStudent(student, id);
 	}
 

@@ -1,5 +1,6 @@
 package com.projetfin.projetfin.chapters;
 
+import com.projetfin.projetfin.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,9 @@ public class ChapterService {
 	}
 
 	public Chapter updateChapter(Chapter chapter, Long id) {
-		if(id == chapter.getId()) {
+
+
+		if(chapterRepository.findById(id).get().getId()== chapter.getId()) {
 			Chapter chapterUpdated = chapterRepository.findById(id).get();
 			chapterUpdated.setName(chapter.getName());
 			chapterUpdated.setValue(chapter.getValue());
@@ -29,8 +32,7 @@ public class ChapterService {
 
 			return chapterRepository.save(chapterUpdated);
 		}
-		throw new ResponseStatusException(
-				HttpStatus.PRECONDITION_FAILED);
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
 
 	}

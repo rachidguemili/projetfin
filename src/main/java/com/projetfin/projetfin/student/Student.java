@@ -17,13 +17,7 @@ public class Student extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@ManyToMany
-	@JsonIdentityInfo(
-			scope = Student.class,
-			generator = ObjectIdGenerators.PropertyGenerator.class,
-			property = "id")
-	@JsonIdentityReference(alwaysAsId = true)
-	List<Course> courseList;
+
 
 
 	public Student() {
@@ -39,13 +33,6 @@ public class Student extends User {
 		this.id = id;
 	}
 
-	public List<Course> getCourseList() {
-		return courseList;
-	}
-
-	public void setCourseList(List<Course> courseList) {
-		this.courseList = courseList;
-	}
 }
 
 

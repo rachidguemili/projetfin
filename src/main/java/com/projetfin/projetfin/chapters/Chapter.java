@@ -13,8 +13,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.projetfin.projetfin.courses.Course;
+import com.projetfin.projetfin.meets.Meet;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Chapter {
@@ -25,6 +27,14 @@ public class Chapter {
 
 	String name;
 	Float value;
+
+	@OneToMany(mappedBy = "chapter")
+	@JsonIdentityInfo(
+			scope = Meet.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	List<Meet> meetList;
 
 	@ManyToOne
 	@JsonIdentityInfo(

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.projetfin.projetfin.courses.Course;
+import com.projetfin.projetfin.meets.Meet;
 import com.projetfin.projetfin.student.Student;
 import com.projetfin.projetfin.user.User;
 
@@ -19,13 +20,23 @@ public class Teacher  extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "teacherList")
 	@JsonIdentityInfo(
-			scope = Student.class,
+			scope = Teacher.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,
 			property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
 	List<Course> courseList;
+
+	@OneToMany
+	@JsonIdentityInfo(
+			scope = Teacher.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	List<Meet> meetList;
+
+
 
 	public Teacher() {
 	}
