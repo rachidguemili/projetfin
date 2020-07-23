@@ -26,6 +26,7 @@ public class Student extends User {
 	@JsonIdentityReference(alwaysAsId = true)
 	Classe classe;
 
+	List<Course> courseList;
 
 
 	public Student() {
@@ -43,6 +44,14 @@ public class Student extends User {
 
 	public Classe getClasse() {
 		return classe;
+	}
+
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
 	}
 
 	public void setClasse(Classe classe) {

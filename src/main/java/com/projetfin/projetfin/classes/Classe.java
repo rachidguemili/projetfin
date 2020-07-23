@@ -29,7 +29,7 @@ public class Classe {
 	@JsonIdentityReference(alwaysAsId = true)
 	Level level;
 
-	@ManyToMany(mappedBy = "classesList")
+	@ManyToMany
 	@JsonIdentityInfo(
 			scope = Classe.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,

@@ -36,7 +36,13 @@ public class Teacher  extends User {
 	@JsonIdentityReference(alwaysAsId = true)
 	List<Meet> meetList;
 
+	public List<Meet> getMeetList() {
+		return meetList;
+	}
 
+	public void setMeetList(List<Meet> meetList) {
+		this.meetList = meetList;
+	}
 
 	public Teacher() {
 	}

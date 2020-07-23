@@ -42,11 +42,11 @@ public class Meet {
 	Teacher teacher;
 
 	@ManyToMany
-//	@JsonIdentityInfo(
-//			scope = Meet.class,
-//			generator = ObjectIdGenerators.PropertyGenerator.class,
-//			property = "id")
-//	@JsonIdentityReference(alwaysAsId = true)
+	@JsonIdentityInfo(
+			scope = Meet.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
 	List<Classe> classesList;
 
 	public Meet() {
