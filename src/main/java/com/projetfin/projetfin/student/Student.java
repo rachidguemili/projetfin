@@ -3,6 +3,7 @@ package com.projetfin.projetfin.student;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.projetfin.projetfin.classes.Classe;
 import com.projetfin.projetfin.courses.Course;
 import com.projetfin.projetfin.teacher.Teacher;
 import com.projetfin.projetfin.user.User;
@@ -17,6 +18,13 @@ public class Student extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
+	@ManyToOne
+	@JsonIdentityInfo(
+			scope = Student.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	Classe classe;
 
 
 
@@ -33,6 +41,13 @@ public class Student extends User {
 		this.id = id;
 	}
 
+	public Classe getClasse() {
+		return classe;
+	}
+
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
 }
 
 

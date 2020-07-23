@@ -20,15 +20,15 @@ public class Teacher  extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@ManyToMany(mappedBy = "teacherList")
-	@JsonIdentityInfo(
-			scope = Teacher.class,
-			generator = ObjectIdGenerators.PropertyGenerator.class,
-			property = "id")
-	@JsonIdentityReference(alwaysAsId = true)
+//	@ManyToMany(mappedBy = "teacherList")
+//	@JsonIdentityInfo(
+//			scope = Teacher.class,
+//			generator = ObjectIdGenerators.PropertyGenerator.class,
+//			property = "id")
+//	@JsonIdentityReference(alwaysAsId = true)
 	List<Course> courseList;
 
-	@OneToMany
+	@OneToMany(mappedBy = "teacher")
 	@JsonIdentityInfo(
 			scope = Teacher.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,

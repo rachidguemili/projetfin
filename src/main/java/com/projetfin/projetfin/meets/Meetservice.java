@@ -24,8 +24,12 @@ public class Meetservice {
 	public Meet updateMeet(Meet meet, Long id) {
 
 		Meet meet1 = meetRepository.findById(id).get();
-		if (meet1.getId() == meet.getId())
-			return meetRepository.save(meet);
+		if (meet1.getId() == meet.getId()){
+			meet1.setChapter(meet.getChapter());
+			meet1.setClassesList(meet.getClassesList());
+			meet1.setDate(meet.getDate());
+			meet1.setSubject(meet.getSubject());
+			return meetRepository.save(meet);}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	}
 

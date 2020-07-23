@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.projetfin.projetfin.chapters.Chapter;
 import com.projetfin.projetfin.levels.Level;
 import com.projetfin.projetfin.meets.Meet;
+import com.projetfin.projetfin.student.Student;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Classe {
 	@JsonIdentityReference(alwaysAsId = true)
 	Level level;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "classesList")
 	@JsonIdentityInfo(
 			scope = Classe.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -36,11 +37,28 @@ public class Classe {
 	@JsonIdentityReference(alwaysAsId = true)
 	List<Meet> meetList;
 
+
+	@OneToMany(mappedBy = "classe")
+	@JsonIdentityInfo(
+			scope = Classe.class,
+			generator = ObjectIdGenerators.PropertyGenerator.class,
+			property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	List<Student> studentList;
+
 	public Classe() {
 	}
 
 	public Level getLevel() {
 		return level;
+	}
+
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 
 	public void setLevel(Level level) {

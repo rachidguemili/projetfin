@@ -9,9 +9,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/meets")
 @CrossOrigin
+@RestController
+@RequestMapping(value= "/meets")
 public class MeetController {
 
 	@Autowired Meetservice meetservice;

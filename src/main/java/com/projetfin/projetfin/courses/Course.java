@@ -36,7 +36,7 @@ public class Course {
 	@JsonIdentityReference(alwaysAsId = true)
 	List<Student> studentList;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "courseList")
 	@JsonIdentityInfo(
 			scope = Course.class,
 			generator = ObjectIdGenerators.PropertyGenerator.class,
